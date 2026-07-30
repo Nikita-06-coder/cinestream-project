@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineStream - Watch Free Movies & Shows</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-[#0f1014] text-white font-sans antialiased selection:bg-cyan-500 selection:text-black">
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-6 py-4 bg-gradient-to-b from-[#0f1014] via-[#0f1014]/80 to-transparent backdrop-blur-md">
+        <div class="flex items-center space-x-8">
+            <h1 class="text-2xl font-black tracking-wider text-cyan-400 cursor-pointer">CINE<span class="text-white">STREAM</span></h1>
+            <ul class="hidden md:flex space-x-6 text-sm font-medium text-gray-300">
+                <li><a href="#" class="hover:text-white transition">Home</a></li>
+                <li><a href="#" class="hover:text-white transition">Movies</a></li>
+                <li><a href="#" class="hover:text-white transition">Series</a></li>
+                <li><a href="#" class="hover:text-white transition">Watchlist</a></li>
+            </ul>
+        </div>
+        
+        <div class="flex items-center space-x-4">
+            <!-- Search Bar -->
+            <div class="relative hidden sm:block">
+                <input type="text" id="search-input" placeholder="Search movies..." class="bg-[#20222a] text-sm text-white px-4 py-1.5 rounded-full pl-10 focus:outline-none focus:ring-2 focus:ring-cyan-400 w-48 md:w-64 transition">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-2.5 text-gray-400 text-xs"></i>
+            </div>
+            <!-- Profile Avatar -->
+            <div class="w-9 h-9 rounded-full bg-cyan-600 flex items-center justify-center font-bold text-sm cursor-pointer hover:ring-2 hover:ring-white transition">
+                NY
+            </div>
+        </div>
+        <!-- Mobile Menu Button (Hamburger icon right side) -->
+<div class="md:hidden flex items-center">
+    <button id="menu-btn" class="text-white text-xl focus:outline-none">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+</div>
+
+<!-- Mobile Dropdown Menu (Hidden by default) -->
+<div id="mobile-menu" class="absolute top-16 left-0 w-full bg-[#0f1014] border-b border-gray-800 flex flex-col space-y-4 px-6 py-4 hidden md:hidden">
+    <a href="index.html" class="text-gray-300 hover:text-white">Home</a>
+    <a href="watchlist.html" class="text-gray-300 hover:text-white">Watchlist</a>
+</div>
+
+<script>
+    // Mobile menu toggle script
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+</script>
+    </nav>
+
+    <!-- Hero Banner Section -->
+    <header class="relative h-[70vh] md:h-[80vh] flex items-center px-6 md:px-16 overflow-hidden">
+        <!-- Background Gradient / Backdrop simulation -->
+        <div class="absolute inset-0 bg-gradient-to-r from-[#0f1014] via-[#0f1014]/60 to-transparent z-10"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-[#0f1014] via-transparent to-transparent z-10"></div>
+        <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1600&auto=format&fit=crop" alt="Hero Background" class="absolute inset-0 w-full h-full object-cover opacity-50 scale-105 animate-pulse duration-[10000ms]">
+
+        <!-- Hero Content -->
+        <div class="relative z-20 max-w-xl space-y-4 mt-20">
+            <span class="bg-cyan-500/20 text-cyan-400 text-xs font-semibold px-3 py-1 rounded-full border border-cyan-500/30">Trending #1</span>
+            <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight">Cinematic Universe</h2>
+            <p class="text-gray-300 text-sm md:text-base line-clamp-3">Explore thousands of free movies, blockbusters, and classic masterpieces instantly. Stream seamlessly anytime, anywhere.</p>
+            <div class="flex items-center space-x-4 pt-2">
+                <button class="bg-white text-black font-semibold px-6 py-2.5 rounded-md flex items-center space-x-2 hover:bg-cyan-400 transition shadow-lg">
+                    <i class="fa-solid fa-play"></i>
+                    <span>Watch Now</span>
+                </button>
+                <button class="bg-gray-800/80 text-white font-semibold px-6 py-2.5 rounded-md flex items-center space-x-2 hover:bg-gray-700 transition border border-gray-700">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>Watchlist</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Movie Rows Container -->
+    <main class="px-6 md:px-16 space-y-10 pb-20 -mt-16 relative z-20">
+        
+        <!-- Row 1: Trending Free Movies -->
+        <section>
+            <h3 class="text-xl font-bold mb-4 flex items-center space-x-2">
+                <span class="w-2 h-6 bg-cyan-400 rounded-full"></span>
+                <span>Trending Free Movies</span>
+            </h3>
+            <!-- Horizontal Scroll Wrapper -->
+            <div class="movies-row flex space-x-4 overflow-x-auto pb-4 scrollbar-hide">
+                <!-- Static Placeholder Cards (Yeh baad mein JavaScript se replace honge) -->
+                <div class="movie-card flex-shrink-0 w-36 md:w-48 cursor-pointer group">
+                    <div class="overflow-hidden rounded-lg shadow-md aspect-[2/3] bg-gray-800">
+                        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=400&auto=format&fit=crop" alt="Movie Poster" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                    </div>
+                    <p class="text-sm font-medium mt-2 truncate text-gray-200 group-hover:text-cyan-400 transition">Cyberpunk Odyssey</p>
+                </div>
+
+                <div class="movie-card flex-shrink-0 w-36 md:w-48 cursor-pointer group">
+                    <div class="overflow-hidden rounded-lg shadow-md aspect-[2/3] bg-gray-800">
+                        <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=400&auto=format&fit=crop" alt="Movie Poster" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                    </div>
+                    <p class="text-sm font-medium mt-2 truncate text-gray-200 group-hover:text-cyan-400 transition">Neon Nights</p>
+                </div>
+
+                <div class="movie-card flex-shrink-0 w-36 md:w-48 cursor-pointer group">
+                    <div class="overflow-hidden rounded-lg shadow-md aspect-[2/3] bg-gray-800">
+                        <img src="https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=400&auto=format&fit=crop" alt="Movie Poster" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                    </div>
+                    <p class="text-sm font-medium mt-2 truncate text-gray-200 group-hover:text-cyan-400 transition">The Last Frontier</p>
+                </div>
+
+                <div class="movie-card flex-shrink-0 w-36 md:w-48 cursor-pointer group">
+                    <div class="overflow-hidden rounded-lg shadow-md aspect-[2/3] bg-gray-800">
+                        <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop" alt="Movie Poster" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                    </div>
+                    <p class="text-sm font-medium mt-2 truncate text-gray-200 group-hover:text-cyan-400 transition">Shadow Walker</p>
+                </div>
+
+                <div class="movie-card flex-shrink-0 w-36 md:w-48 cursor-pointer group">
+                    <div class="overflow-hidden rounded-lg shadow-md aspect-[2/3] bg-gray-800">
+                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=400&auto=format&fit=crop" alt="Movie Poster" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                    </div>
+                    <p class="text-sm font-medium mt-2 truncate text-gray-200 group-hover:text-cyan-400 transition">Digital Dimensions</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Row 2: Popular Classics -->
+        <section>
+            <h3 class="text-xl font-bold mb-4 flex items-center space-x-2">
+                <span class="w-2 h-6 bg-cyan-400 rounded-full"></span>
+                <span>Popular Classics</span>
+            </h3>
+            <div class="movies-row flex space-x-4 overflow-x-auto pb-4 scrollbar-hide">
+                <div class="movie-card flex-shrink-0 w-36 md:w-48 cursor-pointer group">
+                    <div class="overflow-hidden rounded-lg shadow-md aspect-[2/3] bg-gray-800">
+                        <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=400&auto=format&fit=crop" alt="Movie Poster" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                    </div>
+                    <p class="text-sm font-medium mt-2 truncate text-gray-200 group-hover:text-cyan-400 transition">Retro Cinema</p>
+                </div>
+                <div class="movie-card flex-shrink-0 w-36 md:w-48 cursor-pointer group">
+                    <div class="overflow-hidden rounded-lg shadow-md aspect-[2/3] bg-gray-800">
+                        <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=400&auto=format&fit=crop" alt="Movie Poster" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                    </div>
+                    <p class="text-sm font-medium mt-2 truncate text-gray-200 group-hover:text-cyan-400 transition">Midnight Mystery</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <!-- Movie Modal Popup (By default hidden rahega) -->
+<div id="movie-modal" class="fixed inset-0 z-50 bg-black/80 flex items-center justify-center hidden">
+    <div class="bg-[#181a20] p-6 rounded-xl max-w-2xl w-full relative border border-gray-800">
+        <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div id="modal-content" class="space-y-4">
+            <!-- JavaScript yahan dynamic trailer aur description dalega -->
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
